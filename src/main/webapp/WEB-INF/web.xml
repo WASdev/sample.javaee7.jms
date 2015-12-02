@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>
+	JMS20_Samples_P2PTEST</display-name>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		JMS20_Samples_P2PTEST</display-name>
+		<servlet-name>P2PTest</servlet-name>
+		<servlet-class>com.ibm.ws.jms20.samples.P2PTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>P2PTest</servlet-name>
+		<url-pattern>
+		/P2PTest</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<resource-ref>
+    <res-ref-name>jndi_JMS_BASE_QCF</res-ref-name>
+    <res-type>javax.jms.QueueConnectionFactory</res-type>
+   </resource-ref>  
+
+  <resource-env-ref>
+    <resource-env-ref-name>jndi_INPUT_Q</resource-env-ref-name>
+    <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+  </resource-env-ref>  
+  
+     <resource-ref>
+    <res-ref-name>jmsTCF</res-ref-name>
+    <res-type>javax.jms.TopicConnectionFactory</res-type>    
+  </resource-ref>
+
+   <resource-env-ref>
+    <resource-env-ref-name>jmsTopic</resource-env-ref-name>
+    <resource-env-ref-type>javax.jms.Topic</resource-env-ref-type>
+  </resource-env-ref>   
+  
+	</web-app>

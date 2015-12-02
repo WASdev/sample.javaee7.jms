@@ -1,0 +1,45 @@
+<server description="new server">
+
+    <!-- Enable features -->
+<featureManager>
+       <feature>jms-2.0</feature>
+        <feature>localConnector-1.0</feature>
+        <feature>servlet-3.1</feature>
+        <feature>wasJmsClient-2.0</feature>
+        <feature>wasJmsServer-1.0</feature>
+        <feature>jndi-1.0</feature>
+        <feature>jsp-2.3</feature>
+    </featureManager> 
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
+
+	<!-- Automatically expand WAR files and EAR files -->
+	
+<messagingEngine>
+    <queue id="QUEUE1"> </queue>
+</messagingEngine>
+
+<wasJmsEndpoint host="*" wasJmsPort="7276" wasJmsSSLPort="9100">
+</wasJmsEndpoint>
+
+<jmsQueueConnectionFactory jndiName="jndi_JMS_BASE_QCF">
+    <properties.wasJms remoteServerAddress="localhost:7276:BootStrapBasicMessaging"/>
+</jmsQueueConnectionFactory>
+
+<jmsQueue jndiName="jndi_INPUT_Q">
+    <properties.wasJms queueName="QUEUE1"/>
+</jmsQueue>
+
+<jmsTopicConnectionFactory jndiName="jmsTCF">
+    <properties.wasJms clientID="defaultID"/>
+</jmsTopicConnectionFactory>
+
+<jmsTopic jndiName="jmsTopic">
+    <properties.wasJms topicName="Football"/>
+</jmsTopic>
+
+
+    <applicationMonitor updateTrigger="mbean"/>
+    <application location="${server.config.dir}/apps/sample.javaee7.jms.war"></application>
+</server>
