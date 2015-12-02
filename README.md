@@ -7,7 +7,7 @@ This sample uses simplified API of JMS2.0. It contains couple of servlets for pe
 
 This sample requires that you create some resources before you deploy the application. 
 
-1. If you are running the sample in WebSphere Application Server classic, you can create resources using configuration scripts published with the sample.
+1. If you are running the sample in WebSphere Application Server classic, you can create resources using configuration scripts published with the sample at [src.main.scripts](https://github.com/WASdev/sample.javaee7.jms/tree/master/src/main/scripts).
 
   First, run the createSIBusResources.py script from the app_server_root/bin directory to create the required resources.         Provide cell_name, node_name, and server_name values and the path to the sample.javaee7.jms.war file in the command:
   ```bash
