@@ -9,11 +9,11 @@ This sample requires that you create some resources before you deploy the applic
 
 1. If you are running the sample in WebSphere Application Server classic, you can create resources using configuration scripts published with the sample.
 
-    1.1 Run the createSIBusResources.py script from the app_server_root/bin directory to create the required resources. Provide cell_name, node_name, and server_name values and the path to the sample.javaee7.jms.war file in the command:
+  First, run the createSIBusResources.py script from the app_server_root/bin directory to create the required resources.         Provide cell_name, node_name, and server_name values and the path to the sample.javaee7.jms.war file in the command:
   ```bash
     ./wsadmin.sh -f createSIBusResources.py cell_name node_name server_name path_to_file/sample.javaee7.jms.war
    ```
-    1.2 If security is enabled in the server, run the addAuthAlias.py script from the app_server_root/bin directory. Provide your user name and password in the command:
+  Then, if security is enabled in the server, run the addAuthAlias.py script from the app_server_root/bin directory. Provide     your user name and password in the command:
   ```bash
     ./wsadmin.sh -f addAuthAlias.py user_name password
    ```
