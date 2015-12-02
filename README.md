@@ -5,22 +5,33 @@
 
 This sample uses simplified API of JMS2.0. It contains couple of servlets for performing Point to Point and Publish/Subscribe messaging.The JMS Servlet provides means to send/receive messages to a queue and also publish and subscribe messages from a Topic. 
 
-This sample requires that you create some resources before you deploy the application. Complete the following steps to create the required resources: 
+This sample requires that you create some resources before you deploy the application. 
 
-1. Create Bus
-2. Add server as bus member
-3. Create a Queue destination (Ex: Queue1)
-4. Create a Topic Space destination (Ex: TS1)
-5. Create a QueueConnectionFactory (Ex: jndi_JMS_BASE_QCF)
-6. Create a TopicConnectionFactory (Ex: jmsTCF)
-7. Create a JMSQueue (Ex: jndi_INPUT_Q)
-8. Create a JMSTopic (Ex : jmsTopic)
+1. If you are running the sample in WebSphere Application Server classic, you can create resources using configuration scripts published with the sample.
 
-If security is enabled, the following extra steps need to be done:
+    1.1 Run the createSIBusResources.py script from the app_server_root/bin directory to create the required resources. Provide cell_name, node_name, and server_name values and the path to the sample.javaee7.jms.war file in the command:
 
-1. Create an authentication alias
-2. Modify the connection factory to add the authentication alias details
-3. Add the user to the bus connector role
+    ./wsadmin.sh -f createSIBusResources.py cell_name node_name server_name path_to_file/sample.javaee7.jms.war
+
+    1.2 If security is enabled in the server, run the addAuthAlias.py script from the app_server_root/bin directory. Provide your user name and password in the command:
+
+    ./wsadmin.sh -f addAuthAlias.py user_name password
+
+2. If you are running the sample in WebSphere Liberty Profile follow the intructions in the sections below.
+
+
+
+You must create some resources before deploying the application. You can create resources using configuration scripts published with the sample.
+
+    Run the createSIBusResources.py script from the app_server_root/bin directory to create the required resources. Provide cell_name, node_name, and server_name values and the path to the sample.javaee7.jms.war file in the command:
+
+    ./wsadmin.sh -f createSIBusResources.py cell_name node_name server_name path_to_file/sample.javaee7.jms.war
+
+    If security is enabled in the server, run the addAuthAlias.py script from the app_server_root/bin directory. Provide your user name and password in the command:
+
+    ./wsadmin.sh -f addAuthAlias.py user_name password
+
+
 
 ## Getting Started
 
