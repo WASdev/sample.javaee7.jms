@@ -39,7 +39,5 @@
     <properties.wasJms topicName="Football"/>
 </jmsTopic>
 
-
-    <applicationMonitor updateTrigger="mbean"/>
-    <application location="${server.config.dir}/apps/sample.javaee7.jms.war"></application>
+    <application name="sample.javaee7.jms" context-root="/sample.javaee7.jms" location="${appLocation}" type="war"/>
 </server>
