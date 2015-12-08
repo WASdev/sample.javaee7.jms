@@ -31,8 +31,19 @@ Browse the code to see what it does, or build and run it yourself!
 2. Create a new Liberty Profile Server.
 3. Clone this repository.
 4. Import the sample into Eclipse using *File -> Import -> Maven -> Existing Maven Projects* option.
-5. Deploy the sample into Liberty server. Right click on the project and select *Run As -> Run on Server* option. Find and select the Liberty profile server and press *Finish*.
-6. Go to: [http://localhost:9080/sample.javaee7.jms/](http://localhost:9080/sample.javaee7.jms/)
+5. Edit the server.xml file located in the Servers -> DefaultServer folder in EnterpriseExporer. Copy the server.xml features from this project, found under the `<featureManager>` in /src/main/wlp/server.xml
+6. Deploy the sample into Liberty server. Right click on the project and select *Run As -> Run on Server* option. Find and select the Liberty profile server and press *Finish*.
+7. Go to: [http://localhost:9080/sample.javaee7.jms/](http://localhost:9080/sample.javaee7.jms/)
+
+NOTE: When running this Java EE 7 sample using eclipse and WDT, some validation warnings or errors may be shown for the server.xml included with the project, you can remove these errors from your workspace by executing the following steps:  
+
+1. Right click on your project and select "Properties"
+2. Go to "Validation >> XML Validator >> settings"
+3. Select "Exclude Group", then Click on "Add Rule"
+4. Select "Folder or file name" option and click Next
+5. Click "Browse" and select the server.xml file in your project folder.
+6. Click Finish and execute a "Project >> Clean"
+
 
 ## Running with Maven
 
