@@ -64,21 +64,53 @@ public class MethodChainingTest extends HttpServlet {
 
 		String strAction = request.getParameter("ACTION");
 		PrintWriter out = response.getWriter();
+		
+
+		   out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Reading asynchronously</title>");
+        
+        out.println("<meta charset=\"utf-8\"></meta>");
+        out.println("<title>JMS WAS Classic tests</title>");
+        out.println("<style>");
+        out.println(".frm1{padding: 15px;background-color: #9666af; margin-bottom: 10px;}");
+        out.println(".frm2{padding-left: 25px; font-family: Verdana; color: #440055;}");
+        out.println(".big{font-size: 26px; color: white;}");
+        out.println(".small{font-size: 12px;}");
+        out.println("button, select{padding: 5px; padding-left: 20px; padding-right: 20px; margin:10px; width: 270px}");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<body>");
+        out.println("<div class=\"frm1\">");
+        out.println("<div class=\"big\">  WAS Java EE 7 Sample - JMS</div>");
+        out.println("</div>");
+        out.println("<div class=\"frm2\">"); 
+        out.println("</div>");
+        out.println("</head>");
+		
 		try {
 
 			if (strAction == null) {
 				out.println("Please specify the Action");
 				out.println("Example : http://<host>:<port>/JMS20_SamplesWeb/MethodChainingTest?ACTION=MethodChainingQueue");
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else if (strAction.equalsIgnoreCase("MethodChainingQueue")) {
 				// call the Send and Receive Message
 				MethodChainingQueue(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else if (strAction.equalsIgnoreCase("MethodChainingTopic")) {
 				// Send Message only
 				MethodChainingTopic(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else {
 				out.println("Incorrect Action Specified, the valid actions are");
 				out.println("ACTION=MethodChainingQueue");
 				out.println("ACTION=MethodChainingTopic");
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
 
 			}
 
@@ -107,7 +139,7 @@ public class MethodChainingTest extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, method chaining is being showcased");
-		
+		out.println("<br>");
 		/*
 		 * Lookup Queue Connection Factory from JNDI
 		 */
@@ -131,15 +163,16 @@ public class MethodChainingTest extends HttpServlet {
 		jmsContext.createProducer().send(queue, message);
 	
 		out.println("Message sent successfully");
-
+		out.println("<br>");
 		// receive message from Queue
 		TextMessage msg = (TextMessage) consumer.receive(20000);
 
 		out.println("Received Message Successfully :" + msg);
-
+		out.println("<br>");
 		if (jmsContext != null)
 			jmsContext.close();
 		out.println("MethodChainingQueue Completed");
+		out.println("<br>");
 	}
 
 	/**
@@ -160,7 +193,7 @@ public class MethodChainingTest extends HttpServlet {
 			HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, method chaining is being showcased");
-		
+		out.println("<br>");
 		// create a topic connection factory
 		TopicConnectionFactory cf1 = (TopicConnectionFactory) new InitialContext()
 				.lookup("java:comp/env/jmsTCF");
@@ -183,13 +216,13 @@ public class MethodChainingTest extends HttpServlet {
 
 		TextMessage msg = (TextMessage) consumer.receive(20000);
 		out.println("Received message : " + msg);
-		
+		out.println("<br>");
 
 		if (jmsContext != null)
 			jmsContext.close();
 
 		out.println("MethodChainingTopic Completed");
-
+		out.println("<br>");
 	} 
 
 	/**
@@ -202,4 +235,5 @@ public class MethodChainingTest extends HttpServlet {
 	}
 
 }
+
 
