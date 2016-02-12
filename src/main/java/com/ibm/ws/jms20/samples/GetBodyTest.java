@@ -65,29 +65,66 @@ public class GetBodyTest extends HttpServlet {
 
 		String strAction = request.getParameter("ACTION");
 		PrintWriter out = response.getWriter();
+		
+
+		   out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Reading asynchronously</title>");
+        
+        out.println("<meta charset=\"utf-8\"></meta>");
+        out.println("<title>JMS WAS Classic tests</title>");
+        out.println("<style>");
+        out.println(".frm1{padding: 15px;background-color: #9666af; margin-bottom: 10px;}");
+        out.println(".frm2{padding-left: 25px; font-family: Verdana; color: #440055;}");
+        out.println(".big{font-size: 26px; color: white;}");
+        out.println(".small{font-size: 12px;}");
+        out.println("button, select{padding: 5px; padding-left: 20px; padding-right: 20px; margin:10px; width: 270px}");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<body>");
+        out.println("<div class=\"frm1\">");
+        out.println("<div class=\"big\">  WAS Java EE 7 Sample - JMS</div>");
+        out.println("</div>");
+        out.println("<div class=\"frm2\">"); 
+        out.println("</div>");
+        out.println("</head>");
+		
 		try {
 
 			if (strAction == null) {
 				out.println("Please specify the Action");
 				out.println("Example : http://<host>:<port>/JMS20_SamplesWeb/GetBodyTest?ACTION=getBodyQueue");
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
 			} else if (strAction.equalsIgnoreCase("getBodyQueue")) {
 				// call the Send and Receive Message
 				getBodyQueue(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else if (strAction.equalsIgnoreCase("getBodyTopic")) {
 				// Send Message only
 				getBodyTopic(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else if (strAction.equalsIgnoreCase("receiveBodyQueue")) {
 				// call the Send and Receive Message
 				receiveBodyQueue(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else if (strAction.equalsIgnoreCase("receiveBodyTopic")) {
 				// Send Message only
 				receiveBodyTopic(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			}else {
 				out.println("Incorrect Action Specified, the valid actions are");
 				out.println("ACTION=getBodyQueue");
 				out.println("ACTION=getBodyTopic");
 				out.println("ACTION=receiveBodyQueue");
 				out.println("ACTION=receiveBodyTopic");
+				
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 
 			}
 
@@ -116,7 +153,7 @@ public class GetBodyTest extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, getBody is being showcased");
-		
+		out.println("<br>");
 		/*
 		 * Lookup Queue Connection Factory from JNDI
 		 */
@@ -141,7 +178,7 @@ public class GetBodyTest extends HttpServlet {
 		// Send message to Queue
 		producer.send(queue, message);
 		out.println("Message sent successfully");
-
+		out.println("<br>");
 		// receive message from Queue
 		Message msg = consumer.receive(20000);
 		String body = msg.getBody(String.class);
@@ -151,6 +188,7 @@ public class GetBodyTest extends HttpServlet {
 		if (jmsContext != null)
 			jmsContext.close();
 		out.println("getBodyQueue Completed");
+		out.println("<br>");
 	}
 
 	/**
@@ -171,7 +209,7 @@ public class GetBodyTest extends HttpServlet {
 			HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, getBody is being showcased");
-		
+		out.println("<br>");
 		// create a topic connection factory
 		TopicConnectionFactory cf1 = (TopicConnectionFactory) new InitialContext()
 				.lookup("java:comp/env/jmsTCF");
@@ -200,13 +238,13 @@ public class GetBodyTest extends HttpServlet {
 		String body = msg.getBody(String.class);
 
 		out.println("Received Message Successfully and the message body is :" + body);
-
+		out.println("<br>");
 
 		if (jmsContext != null)
 			jmsContext.close();
 
 		out.println("getBodyTopic Completed");
-
+		out.println("<br>");
 	} 
 	
 	/**
@@ -227,7 +265,7 @@ public class GetBodyTest extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, getBody is being showcased");
-		
+		out.println("<br>");
 		/*
 		 * Lookup Queue Connection Factory from JNDI
 		 */
@@ -252,15 +290,16 @@ public class GetBodyTest extends HttpServlet {
 		// Send message to Queue
 		producer.send(queue, message);
 		out.println("Message sent successfully");
-
+		out.println("<br>");
 		// receive message from Queue by using the method receiveBody
 		String  msg =  consumer.receiveBody(String.class);
 
 		out.println("Received Message Successfully :" + msg);
-
+		out.println("<br>");
 		if (jmsContext != null)
 			jmsContext.close();
 		out.println("receiveBodyQueue Completed");
+		out.println("<br>");
 	}
 
 	/**
@@ -281,7 +320,7 @@ public class GetBodyTest extends HttpServlet {
 			HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, getBody is being showcased");
-		
+		out.println("<br>");
 		// create a topic connection factory
 		TopicConnectionFactory cf1 = (TopicConnectionFactory) new InitialContext()
 				.lookup("java:comp/env/jmsTCF");
@@ -309,13 +348,13 @@ public class GetBodyTest extends HttpServlet {
 		String  msg =  consumer.receiveBody(String.class);
 		
 		out.println("Received Message Successfully :" + msg);
-
+		out.println("<br>");
 
 		if (jmsContext != null)
 			jmsContext.close();
 
 		out.println("receiveBodyTopic Completed");
-
+		out.println("<br>");
 	} 
 
 	/**
