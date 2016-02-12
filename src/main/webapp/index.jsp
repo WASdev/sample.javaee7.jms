@@ -16,7 +16,7 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS OR MODIFICATIONS TO THE SAMPLE
  * SOURCE CODE.
  * 
- * (C) Copyright IBM Corp. 2015.
+ * (C) Copyright IBM Corp. 2015,2016.
  * 
  * All Rights Reserved. Licensed Materials - Property of IBM.  
  */
@@ -110,6 +110,57 @@ button {
 		Receive all the messages using message selector<br>
 		<i>url: &lt;host:port&gt;/sample.javaee7.jms/P2PTest?ACTION=receiveAllMessagesSelectors <br></i>
 		<br>
+			
+		<h3>Delivery Delay Tests</h3>
+		<a href="/sample.javaee7.jms/DeliveryDelayTest?ACTION=deliveryDelayQueue">Delivery Delay Queue Test</a><br>
+		setDeliveryDelay on a JMSProducer with a Queue as destination is being showcased on this scenario <br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jmsDeliveryDelayTest?ACTION=deliveryDelayQueue <br></i>
+		<br>
+			<a href="/sample.javaee7.jms/DeliveryDelayTest?ACTION=deliveryDelayTopic">Delivery Delay Topic Test</a><br>
+		setDeliveryDelay on JMSProducer with a Topic as destination is being showcased on this scenario<br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jmsDeliveryDelayTest?ACTION=deliveryDelayTopic <br></i>
+		<br>
+
+		<h3>Get Body Tests</h3>
+		<a href="/sample.javaee7.jms/GetBodyTest?ACTION=getBodyQueue">Get Body Queue Test</a><br>
+		getBodyQueue function is being showcased on this scenario<br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/GetBodyTest?ACTION=getBodyQueue <br></i>
+		<br>
+		<a href="/sample.javaee7.jms/GetBodyTest?ACTION=getBodyTopic">Get Body Topic Test</a><br>
+		getBodyTopic function is being showcased on this scenario <br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/GetBodyTest?ACTION=getBodyTopic <br></i>
+		<br>
+			<a href="/sample.javaee7.jms/GetBodyTest?ACTION=receiveBodyQueue">Receive Body Queue Test</a><br>
+		receiveBodyQueue function is being showcased on this scenario <br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/GetBodyTest?ACTION=receiveBodyQueue <br></i>
+		<br>
+				<a href="/sample.javaee7.jms/GetBodyTest?ACTION=receiveBodyTopic">Receive Body Topic Test</a><br>
+		receiveBodyTopic function is being showcased on this scenario <br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/GetBodyTest?ACTION=receiveBodyTopic <br></i>
+		<br>
+
+		<h3>Method Chaining Tests</h3>
+		<a href="/sample.javaee7.jms/MethodChainingTest?ACTION=MethodChainingQueue">Method Chaining Queue Test</a><br>
+		Method chaining is being showcased with a Queue as destination on this scenario <br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/MethodChainingTest?ACTION=MethodChainingQueue <br></i>
+		<br>		
+		<a href="/sample.javaee7.jms/MethodChainingTest?ACTION=MethodChainingTopic">Method Chaining Topic Test</a><br>
+		Method chaining is being showcased with a Topic as destination on this scenario <br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/MethodChainingTest?ACTION=MethodChainingTopic <br></i>
+		<br>
+		
+		<h3>Suscription Tests</h3>
+		<a href="/sample.javaee7.jms/SubscriptionTest?ACTION=createSharedConsumerTest">Create Shared Consumer Test</a><br>
+		createSharedConsumer on JMSContext is being showcased on this scenario<br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/SubscriptionTest?ACTION=createSharedConsumerTest <br></i>
+		<br>
+		
+		<a href="/sample.javaee7.jms/SubscriptionTest?ACTION=createSharedDurableConsumerTest">Create Shared Durable Consumer Test</a><br>
+		createSharedDurableConsumer on JMSContext is being showcased on this scenario <br>
+		<i>url: &lt;host:port&gt;/sample.javaee7.jms/SubscriptionTest?ACTION=createSharedDurableConsumerTest <br></i>
+		<br>
+		
+		
 	</div>
 
 </html>
