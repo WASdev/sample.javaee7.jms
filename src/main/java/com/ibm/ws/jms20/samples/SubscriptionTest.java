@@ -65,21 +65,53 @@ public class SubscriptionTest extends HttpServlet {
 
 		String strAction = request.getParameter("ACTION");
 		PrintWriter out = response.getWriter();
+		PrintWriter servlet = response.getWriter();
+
+		   out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Reading asynchronously</title>");
+        
+        out.println("<meta charset=\"utf-8\"></meta>");
+        out.println("<title>JMS WAS Classic tests</title>");
+        out.println("<style>");
+        out.println(".frm1{padding: 15px;background-color: #9666af; margin-bottom: 10px;}");
+        out.println(".frm2{padding-left: 25px; font-family: Verdana; color: #440055;}");
+        out.println(".big{font-size: 26px; color: white;}");
+        out.println(".small{font-size: 12px;}");
+        out.println("button, select{padding: 5px; padding-left: 20px; padding-right: 20px; margin:10px; width: 270px}");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<body>");
+        out.println("<div class=\"frm1\">");
+        out.println("<div class=\"big\">  WAS Java EE 7 Sample - JMS</div>");
+        out.println("</div>");
+        out.println("<div class=\"frm2\">"); 
+        out.println("</div>");
+        out.println("</head>");
+		
 		try {
 
 			if (strAction == null) {
 				out.println("Please specify the Action");
 				out.println("Example : http://<host>:<port>/JMS20_SamplesWeb/SubscriptionTest?ACTION=createSharedConsumerTest");
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else if (strAction.equalsIgnoreCase("createSharedConsumerTest")) {
 				// call the Send and Receive Message
 				createSharedConsumerTest(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else if (strAction.equalsIgnoreCase("createSharedDurableConsumerTest")) {
 				// Send Message only
 				createSharedDurableConsumerTest(request, response);
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
+
 			} else {
 				out.println("Incorrect Action Specified, the valid actions are");
 				out.println("ACTION=createSharedConsumerTest");
 				out.println("ACTION=createSharedDurableConsumerTest");
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
 
 			}
 
@@ -108,7 +140,7 @@ public class SubscriptionTest extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, createSharedConsumer on JMSContext is being showcased");
-		
+		out.println("<br>");
 		/*
 		 * Lookup Topic Connection Factory from JNDI
 		 */
@@ -134,15 +166,16 @@ public class SubscriptionTest extends HttpServlet {
 		// Send message to Queue
 		producer.send(topic, message);
 		out.println("Message sent successfully");
-
+		out.println("<br>");
 		// receive message from Queue
 		Message msg = consumer.receive(20000);
 		
 		out.println("Received Message Successfully :" + msg);
-
+		out.println("<br>");
 		if (jmsContext != null)
 			jmsContext.close();
 		out.println("createSharedConsumerTest Completed");
+		out.println("<br>");
 	}
 
 	/**
@@ -163,7 +196,7 @@ public class SubscriptionTest extends HttpServlet {
 			HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, createSharedDurableConsumer on JMSContext is being showcased");
-		
+		out.println("<br>");
 		// create a topic connection factory
 		TopicConnectionFactory cf1 = (TopicConnectionFactory) new InitialContext()
 				.lookup("java:comp/env/jmsTCF");
@@ -191,12 +224,13 @@ public class SubscriptionTest extends HttpServlet {
 		Message  msg =  consumer.receive(20000);
 	
 		out.println("Received Message Successfully :" + msg);
-		
+		out.println("<br>");
 
 		if (jmsContext != null)
 			jmsContext.close();
 
 		out.println("createSharedDurableConsumerTest Completed");
+		out.println("<br>");
 
 	} 
 
