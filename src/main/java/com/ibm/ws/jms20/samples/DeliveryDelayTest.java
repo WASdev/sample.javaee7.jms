@@ -63,21 +63,52 @@ public class DeliveryDelayTest extends HttpServlet {
 
 		String strAction = request.getParameter("ACTION");
 		PrintWriter out = response.getWriter();
+				
+		  out.println("<html>");
+          out.println("<head>");
+          out.println("<title>Reading asynchronously</title>");
+          
+          out.println("<meta charset=\"utf-8\"></meta>");
+          out.println("<title>JMS WAS Classic tests</title>");
+          out.println("<style>");
+          out.println(".frm1{padding: 15px;background-color: #9666af; margin-bottom: 10px;}");
+          out.println(".frm2{padding-left: 25px; font-family: Verdana; color: #440055;}");
+          out.println(".big{font-size: 26px; color: white;}");
+          out.println(".small{font-size: 12px;}");
+          out.println("button, select{padding: 5px; padding-left: 20px; padding-right: 20px; margin:10px; width: 270px}");
+          out.println("</style>");
+          out.println("</head>");
+          out.println("<body>");
+          out.println("<body>");
+          out.println("<div class=\"frm1\">");
+          out.println("<div class=\"big\">  WAS Java EE 7 Sample - JMS</div>");
+          out.println("</div>");
+          out.println("<div class=\"frm2\">"); 
+          out.println("</div>");
+          out.println("</head>");
+		
 		try {
 
 			if (strAction == null) {
 				out.println("Please specify the Action");
 				out.println("Example : http://<host>:<port>/JMS20_SamplesWeb/DeliveryDelayTest?ACTION=deliveryDelayQueue");
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
 			} else if (strAction.equalsIgnoreCase("deliveryDelayQueue")) {
 
 				deliveryDelayQueue(request, response);
+				
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
 			} else if (strAction.equalsIgnoreCase("deliveryDelayTopic")) {
 
 				deliveryDelayTopic(request, response);
+				
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
 			} else {
 				out.println("Incorrect Action Specified, the valid actions are");
 				out.println("ACTION=deliveryDelayQueue");
 				out.println("ACTION=deliveryDelayTopic");
+				
+				out.println("<br><a href=\"/sample.javaee7.jms/\">Return to main page</a><br>");
 
 			}
 
@@ -106,6 +137,7 @@ public class DeliveryDelayTest extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, setDeliveryDelay on JMSProducer is being showcased");
+		out.println("<br>");
 		long deliveryDelay = 10000;
 		/*
 		 * Lookup Queue Connection Factory from JNDI
@@ -133,20 +165,24 @@ public class DeliveryDelayTest extends HttpServlet {
 		producer.send(queue, message);
 		long sendTime = System.currentTimeMillis();
 		out.println("Time at send " +  sendTime);
-		
+		out.println("<br>");
 		// receive message from Queue
 		TextMessage msg = (TextMessage) consumer.receive(20000);
 		
 		long receiveTime = System.currentTimeMillis();
 		out.println("Received Message Successfully : " + msg);
+		out.println("<br>");
 		out.println("Time at receive " + receiveTime);
+		out.println("<br>");
 		out.println("Delivery Delay is enabled to 10000ms and the difference between send time and receive time is seen to be " + (receiveTime - sendTime));
+		out.println("<br>");
 
 
 		
 		if (jmsContext != null)
 			jmsContext.close();
 		out.println("deliveryDelayQueue Completed");
+		out.println("<br>");
 	}// end of deliveryDelayQueue
 
 	/**
@@ -167,6 +203,7 @@ public class DeliveryDelayTest extends HttpServlet {
 			HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
 		out.println("In this scenario, setDeliveryDelay on JMSProducer is being showcased");
+		out.println("<br>");
 		long deliveryDelay = 10000;
 		// create a topic connection factory
 		TopicConnectionFactory cf1 = (TopicConnectionFactory) new InitialContext()
@@ -194,20 +231,22 @@ public class DeliveryDelayTest extends HttpServlet {
 		producer.send(topic, message);
 		long sendTime = System.currentTimeMillis();
 		out.println("Time at send " +  sendTime);
-		
+		out.println("<br>");
 
 		TextMessage msg = (TextMessage) consumer.receive(20000);
 		long receiveTime = System.currentTimeMillis();
 		out.println("Received Message Successfully : " + msg);
+		out.println("<br>");
 		out.println("Time at receive " + receiveTime);
+		out.println("<br>");
 		out.println("Delivery Delay is enabled to 10000ms and the difference between send time and receive time is seen to be " + (receiveTime - sendTime));
-
+		out.println("<br>");
 		
 		if (jmsContext != null)
 			jmsContext.close();
 
 		out.println("deliveryDelayTopic Completed");
-
+		out.println("<br>");
 	} // deliveryDelayTopic
 
 	/**
