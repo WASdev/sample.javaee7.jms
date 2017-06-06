@@ -28,12 +28,10 @@ Browse the code to see what it does, or build and run it yourself!
 ## Running in Eclipse
 
 1. Download and install [Eclipse with the WebSphere Developer Tools](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-eclipse/).
-2. Create a new Liberty Profile Server.
-3. Clone this repository.
-4. Import the sample into Eclipse using *File -> Import -> Maven -> Existing Maven Projects* option.
-5. Edit the server.xml file located in the Servers -> DefaultServer folder in EnterpriseExporer. Copy the server.xml features from this project, found under the `<featureManager>` in /src/main/wlp/server.xml
-6. Deploy the sample into Liberty server. Right click on the project and select *Run As -> Run on Server* option. Find and select the Liberty profile server and press *Finish*.
-7. Go to: [http://localhost:9080/sample.javaee7.jms/](http://localhost:9080/sample.javaee7.jms/)
+2. Clone this repository.
+3. Import the sample into Eclipse using *File -> Import -> Maven -> Existing Maven Projects* option.
+4. Right click on the project and select *Run As -> Run on Server* option. Find and select the Liberty profile server and press *Finish*.
+5. Go to: [http://localhost:9080/sample.javaee7.jms/](http://localhost:9080/sample.javaee7.jms/)
 
 NOTE: When running this Java EE 7 sample using eclipse and WDT, some validation warnings or errors may be shown for the server.xml included with the project, you can remove these errors from your workspace by executing the following steps:  
 
@@ -47,7 +45,7 @@ NOTE: When running this Java EE 7 sample using eclipse and WDT, some validation 
 
 ## Running with Maven
 
-This project can be build with [Apache Maven](http://maven.apache.org/). The project uses [Liberty Maven Plug-in][] to automatically download and install Liberty profile runtime from the [Liberty repository](https://developer.ibm.com/wasdev/downloads/). Liberty Maven Plug-in is also used to create, configure, and run the application on the Liberty server. 
+This project can be built with [Apache Maven](http://maven.apache.org/). The project uses [Liberty Maven Plug-in](https://github.com/WASdev/ci.maven) to automatically download and install Liberty with Java EE7 Full Platform runtime from [Maven Central](https://search.maven.org/). Liberty Maven Plug-in is also used to create, configure, and run the application on the Liberty server. 
 
 Use the following steps to run the application with Maven:
 
@@ -71,3 +69,25 @@ Click the button below to deploy your own copy of this application to [Bluemix](
 
 Once the application is deployed and running in Bluemix, it will be available under 
 [http://MYAPPNAME.mybluemix.net/sample.javaee7.jms/](http://MYAPPNAME.mybluemix.net/sample.javaee7.jms/).
+
+## Notice
+
+© Copyright IBM Corporation 2015, 2017.
+
+## License
+
+```text
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+````
+
+[Liberty Maven Plug-in]: https://github.com/WASdev/ci.maven
