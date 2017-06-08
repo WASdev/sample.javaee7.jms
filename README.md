@@ -1,6 +1,6 @@
   
   
-# Sample Java EE 7 - JMS
+# Sample Java EE 7 - JMS [![Build Status](https://travis-ci.org/WASdev/sample.javaee7.jms.svg?branch=master)](https://travis-ci.org/WASdev/sample.javaee7.jms)
 
 
 This sample uses simplified API of JMS2.0. It contains couple of servlets for performing Point to Point and Publish/Subscribe messaging.The JMS Servlet provides means to send/receive messages to a queue and also publish and subscribe messages from a Topic. 
