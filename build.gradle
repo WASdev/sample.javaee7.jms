@@ -22,13 +22,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:1.1-SNAPSHOT'
+        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:2.0-SNAPSHOT'
     }
 }
 
 repositories {
     mavenCentral()   
 }
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version:'4.12'
     testCompile group: 'org.apache.cxf', name: 'cxf-rt-rs-client', version:'3.1.1'
@@ -40,22 +41,11 @@ dependencies {
 }
 
 ext {
-    testServerHttpPort = '9080'
-    testServerHttpsPort = '9443' 
+    testServerHttpPort = 9080
+    testServerHttpsPort = 9443
     warContext = 'sample.javaee7.jms'
     packagingType = 'usr'
 }
-
-// how to do profile equivalent ??????
-
-//    <profiles>
-//        <profile>
-//            <id>runnable</id>
-//            <properties>
-//                <packaging.type>runnable</packaging.type>
-//            </properties>
-//        </profile>
-//    </profiles>
 
 war {
     archiveName = baseName + '.' + extension

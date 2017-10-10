@@ -17,7 +17,7 @@ This sample requires that you create some resources before you deploy the applic
   ```bash
     ./wsadmin.sh -f addAuthAlias.py user_name password
    ```
-2. If you are running the sample in WebSphere Liberty Profile follow the instructions in the sections below.
+2. If you are running the sample in Liberty follow the instructions in the sections below.
 
 
 ## Getting Started
@@ -49,7 +49,7 @@ This project can be built with [Apache Maven](http://maven.apache.org/). The pro
 
 Use the following steps to run the application with Maven:
 
-1. Execute full Maven build. This will cause Liberty Maven Plug-in to download and install Liberty profile server.
+1. Execute the full Gradle build. The Liberty Gradle Plug-in will download and install the Liberty runtime and create the server.
     ```bash
     $ mvn clean install
     ```
