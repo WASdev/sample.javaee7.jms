@@ -1,0 +1,92 @@
+apply plugin: 'war'
+apply plugin: 'liberty'
+
+group = 'liberty.samples'
+version = '1'
+
+description = "Liberty JDBC Gradle example"
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:2.0'
+    }
+}
+
+repositories {
+    mavenCentral()   
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.apache.cxf', name: 'cxf-rt-rs-client', version:'3.1.1'
+    testCompile group: 'org.glassfish', name: 'javax.json', version:'1.0.4'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+    providedCompile group: 'org.apache.geronimo.specs', name: 'geronimo-servlet_3.0_spec', version:'1.0'
+    providedCompile group: 'javax.jms', name: 'javax.jms-api', version:'2.0'
+    libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-javaee7', version: '17.0.0.2'
+}
+
+ext {
+    testServerHttpPort = 9080
+    testServerHttpsPort = 9443
+    warContext = 'sample.javaee7.jms'
+    packagingType = 'usr'
+}
+
+war {
+    archiveName = baseName + '.' + extension
+}
+    
+liberty {
+    server {
+        configFile = file('src/main/wlp/server.xml')
+        bootstrapProperties = ['default.http.port': testServerHttpPort, 
+                               'default.https.port': testServerHttpsPort,
+                               'appContext': warContext,
+                               'appLocation': war.archiveName]
+    }
+    
+    packageLiberty {
+        include = packagingType
+    }
+}
+
+test {
+    println 'inside the unit test block'
+    reports.html.destination = file("$buildDir/reports/unit")
+    reports.junitXml.destination = file("$buildDir/test-results/unit")
+    exclude '**/it/**'
+}
+
+
+task integrationTest(type: Test) {
+    group 'Verification'
+    description 'Runs the integration tests.'
+    reports.html.destination = file("$buildDir/reports/it")
+    reports.junitXml.destination = file("$buildDir/test-results/it")
+    include '**/it/**'
+    exclude '**/unit/**'
+
+    systemProperties = ['liberty.test.port': testServerHttpPort, 'war.context': warContext]
+}
+
+task printMessageAboutRunningServer {
+    doLast {
+        println "The server is now running at http://localhost:${testServerHttpPort}/${warContext}"
+        println "To stop the server run 'gradle libertyStop'"
+    }
+}
+
+clean.dependsOn 'libertyStop'
+installApps.dependsOn 'war'
+libertyStart.dependsOn 'installApps'
+libertyStart.finalizedBy 'printMessageAboutRunningServer'
