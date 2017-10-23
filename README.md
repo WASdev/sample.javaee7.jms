@@ -17,7 +17,7 @@ This sample requires that you create some resources before you deploy the applic
   ```bash
     ./wsadmin.sh -f addAuthAlias.py user_name password
    ```
-2. If you are running the sample in WebSphere Liberty Profile follow the intructions in the sections below.
+2. If you are running the sample in Liberty follow the instructions in the sections below.
 
 
 ## Getting Started
@@ -49,7 +49,7 @@ This project can be built with [Apache Maven](http://maven.apache.org/). The pro
 
 Use the following steps to run the application with Maven:
 
-1. Execute full Maven build. This will cause Liberty Maven Plug-in to download and install Liberty profile server.
+1. Execute the full Gradle build. The Liberty Gradle Plug-in will download and install the Liberty runtime and create the server.
     ```bash
     $ mvn clean install
     ```
@@ -60,6 +60,30 @@ Use the following steps to run the application with Maven:
     ```
 
 Once the server is running, the application will be available under [http://localhost:9080/sample.javaee7.jms/](http://localhost:9080/sample.javaee7.jms/).
+
+## Running with Gradle
+
+This project can be built with [Apache Gradle]. The project uses [Liberty Gradle Plug-in](https://github.com/WASdev/ci.gradle) to automatically download and install Liberty with Java EE7 Full Platform runtime from [Maven Central]. Liberty Gradle Plug-in is also used to create, configure, and run the application on the Liberty server. 
+
+Use the following steps to run the application with Gradle:
+
+1. Execute full Gradle build. This will cause Liberty Gradle Plug-in to download and install Liberty profile server.
+    ```bash
+    $ gradle clean build
+    ```
+
+2. To run the server with the JMS application execute:
+    ```bash
+    $ gradle libertyStart
+    ```
+    
+Once the server is running, the application will be available under [http://localhost:9080/sample.javaee7.jms/](http://localhost:9080/sample.javaee7.jms/).
+    
+3. To stop the server with the JMS application execute:
+    ```bash
+    $ gradle libertyStop
+    ```
+
 
 ## Deploying to Bluemix
 
