@@ -1,7 +1,11 @@
 language: java
-matrix:
-  include:
-    - jdk: oraclejdk7
-    - jdk: oraclejdk8
+
+jdk:
+    - openjdk8
+
+env:
+    - TEST_COMMAND="./gradlew clean build"
+    - TEST_COMMAND="mvn clean install"
+
 script:
-  - mvn install
+    - (eval "$TEST_COMMAND")
